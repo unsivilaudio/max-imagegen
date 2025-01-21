@@ -29,7 +29,8 @@ type ImageOpts = {
 
 const imageOpts: ImageOpts = {
     negative: 'low quality, blurry',
-    model: 'sd15.safetensors',
+    // model: 'sd15.safetensors',
+    model: 'SD15\\dreamshaper_8.safetensors',
     cfg: 5,
     steps: 24,
     size: [1024, 768],

@@ -23,6 +23,7 @@ export function enforceAuth(req: Request, res: Response, next: NextFunction) {
         if (err instanceof AppError) {
             return next(err);
         }
+        console.log(err);
         return next(new AppError('Could not authorize request.', 500));
     }
     next();
