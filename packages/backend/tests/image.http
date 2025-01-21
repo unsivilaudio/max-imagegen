@@ -1,0 +1,11 @@
+POST http://localhost:8080/generate-image
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzM3NDg0NTY1LCJleHAiOjE3Mzc0ODgxNjV9.tcUN9bX6U0E6COcJuzkuw7bHMscfx1ApPVTd5VCgB2s
+
+{
+    "prompt": "A quick brown fox",
+    "options": {
+        "model": "SD15\\dreamshaper_8.safetensors",
+        "size": [512,512]
+    }
+}

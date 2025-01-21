@@ -1,6 +1,9 @@
 import express, { Request, Response, NextFunction } from 'express';
+import authRoutes from './routes/auth';
+import imageRoutes from './routes/image';
 
 const app = express();
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.json({
@@ -8,6 +11,9 @@ app.get('/', (req, res) => {
         message: 'Hello world',
     });
 });
+
+app.use(authRoutes);
+app.use(imageRoutes);
 
 app.use((error: AppError, _req: Request, res: Response, _next: NextFunction) => {
     console.log(error.message);

@@ -10,11 +10,21 @@
         "start": "nodemon lib/app.ts"
     },
     "dependencies": {
-        "express": "^4.21.2"
+        "@prisma/client": "^6.2.1",
+        "@stable-canvas/comfyui-client": "^1.4.1",
+        "bcryptjs": "^2.4.3",
+        "express": "^4.21.2",
+        "jsonwebtoken": "^9.0.2",
+        "node-fetch": "^3.3.2"
     },
     "devDependencies": {
+        "@types/bcryptjs": "^2.4.6",
         "@types/express": "^5.0.0",
-        "typescript": "^5.7.3",
-        "nodemon": "^3.1.9"
+        "@types/jsonwebtoken": "^9.0.7",
+        "@types/node": "^22.10.7",
+        "nodemon": "^3.1.9",
+        "prisma": "^6.2.1",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.3"
     }
 }
