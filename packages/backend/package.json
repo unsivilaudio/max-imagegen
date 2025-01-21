@@ -1,0 +1,20 @@
+{
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "backend for image generation",
+    "author": "unsivil <unsivilaudio@gmail.com>",
+    "homepage": "",
+    "license": "ISC",
+    "main": "app.ts",
+    "scripts": {
+        "start": "nodemon lib/app.ts"
+    },
+    "dependencies": {
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "typescript": "^5.7.3",
+        "nodemon": "^3.1.9"
+    }
+}
