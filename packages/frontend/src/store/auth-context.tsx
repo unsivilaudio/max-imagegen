@@ -24,12 +24,26 @@ export function useAuthContext() {
     return authCtx;
 }
 
+function saveToken(token: string) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('tokenExpiration', new Date(Date.now() + 60 * 60 * 1000).toISOString());
+}
+
+const storedToken = localStorage.getItem('token');
+const storedTokenExpiration = localStorage.getItem('tokenExpiration');
+
+let initialToken: string | null = null;
+
+if (storedToken && storedTokenExpiration && new Date(storedTokenExpiration) > new Date()) {
+    initialToken = storedToken;
+}
+
 type AuthContextProviderProps = {
     children: ReactNode;
 };
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-    const [token, setToken] = useState<null | string>(null);
+    const [token, setToken] = useState<null | string>(initialToken);
 
     async function signup(email: string, password: string) {
         const response = await fetch('http://localhost:8080/signup', {
@@ -48,12 +62,33 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         }
 
         setToken(resData.token);
+        saveToken(resData.token);
     }
 
-    async function login(email: string, password: string) {}
+    async function login(email: string, password: string) {
+        const response = await fetch('http://localhost:8080/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        const resData = await response.json();
+        if (!response.ok) {
+            throw new Error(
+                resData.message || 'Loggin in failed. Check your credentials or try later.',
+            );
+        }
+
+        setToken(resData.token);
+        saveToken(resData.token);
+    }
 
     function logout() {
         setToken(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('tokenExpiration');
     }
 
     return (
