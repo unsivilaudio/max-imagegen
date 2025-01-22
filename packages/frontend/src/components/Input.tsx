@@ -1,25 +1,24 @@
+import { ComponentPropsWithoutRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-type InputProps = {
-    id: string;
-    isTextArea?: boolean;
-    className?: string;
-    type?: string;
-    name?: string;
-    min?: string;
-    max?: string;
-    steps?: string;
-    defaultValue?: string;
-};
+type TextInputProps = ComponentPropsWithoutRef<'input'>;
 
-export default function Input({ isTextArea = false, className, ...props }: InputProps) {
-    const Component = isTextArea ? 'textarea' : 'input';
+type TextAreaProps = {
+    isTextArea: true;
+} & ComponentPropsWithoutRef<'textarea'>;
 
-    return (
-        <Component
-            className={twMerge('rounded-lg bg-stone-600 p-2', className)}
-            name={props.id}
-            {...props}
-        />
+type InputProps = TextInputProps | TextAreaProps;
+
+function isTextAreaProps(props: InputProps) {
+    return 'isTextArea' in props;
+}
+
+export default function Input(props: InputProps) {
+    const { className } = props;
+    const classes = twMerge('rounded-lg bg-stone-600 p-2', className);
+    return isTextAreaProps(props) ? (
+        <textarea {...props} className={classes}></textarea>
+    ) : (
+        <input {...props} className={classes} />
     );
 }

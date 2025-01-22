@@ -74,7 +74,7 @@ export default function ImageGeneration() {
                                 name='quality'
                                 min='1'
                                 max='100'
-                                steps='1.0'
+                                step='1.0'
                                 defaultValue='24'
                                 className='w-[4rem]'
                             />
