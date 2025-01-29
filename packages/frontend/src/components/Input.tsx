@@ -16,9 +16,10 @@ function isTextAreaProps(props: InputProps) {
 export default function Input(props: InputProps) {
     const { className } = props;
     const classes = twMerge('rounded-lg bg-stone-600 p-2', className);
-    return isTextAreaProps(props) ? (
-        <textarea {...props} className={classes}></textarea>
-    ) : (
-        <input {...props} className={classes} />
-    );
+    if (isTextAreaProps(props)) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { isTextArea, ...rest }: { isTextArea: boolean } & ComponentPropsWithoutRef<'textarea'> = props;
+        return <textarea {...rest} className={classes}></textarea>;
+    }
+    return <input {...props} className={classes} />;
 }

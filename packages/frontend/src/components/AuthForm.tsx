@@ -42,11 +42,11 @@ export default function AuthForm() {
         <Form action={action} className='mx-auto max-w-[25rem]'>
             <InputContainer>
                 <Label htmlFor='email'>Email</Label>
-                <Input type='email' id='email' />
+                <Input type='email' id='email' name='email' />
             </InputContainer>
             <InputContainer>
                 <Label htmlFor='password'>Password</Label>
-                <Input type='password' id='password' />
+                <Input type='password' id='password' name='password' />
             </InputContainer>
             {error && <p className='mt-3 text-red-300'>{error}</p>}
             <p className='mt-4 flex flex-col gap-3'>
